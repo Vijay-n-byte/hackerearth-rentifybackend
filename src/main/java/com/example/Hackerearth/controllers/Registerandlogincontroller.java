@@ -21,44 +21,52 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.Hackerearth.dto.newusersdto;
-import com.example.Hackerearth.dto.tokendto;
-import com.example.Hackerearth.dto.usernamepassworddto;
-import com.example.Hackerearth.enums.roles;
-import com.example.Hackerearth.repo.logindetailsrepo;
-import com.example.Hackerearth.services.jwtservice;
-import com.example.Hackerearth.services.useraccountservice;
+import com.example.Hackerearth.dto.Newusersdto;
+import com.example.Hackerearth.dto.Tokendto;
+import com.example.Hackerearth.dto.Usernamepassworddto;
+import com.example.Hackerearth.enums.Roles;
+import com.example.Hackerearth.repo.Logindetailsrepo;
+import com.example.Hackerearth.services.Jwtservice;
+import com.example.Hackerearth.services.Useraccountservice;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 
-//@CrossOrigin(origins="http://localhost:4200")
-@CrossOrigin(origins="http://ec2-54-89-222-88.compute-1.amazonaws.com:4200")
+@CrossOrigin(origins="http://192.168.43.122:4200")
+//@CrossOrigin(origins="http://ec2-54-89-222-88.compute-1.amazonaws.com:4200")
 @RestController
 @RequestMapping("/rentify")
-public class registerandlogincontroller {
+public class Registerandlogincontroller {
 
 	@Autowired
-	private useraccountservice us;
+	private Useraccountservice us;
 	@Autowired
-	private logindetailsrepo ldr;
+	private Logindetailsrepo ldr;
 	@Autowired
 	private AuthenticationManager am;
 	@Autowired
-	private jwtservice js;
+	private Jwtservice js;
+	
+	@GetMapping("/welcome")  //0->username exists already .1->new user.registration successful.
+	public String welcome() {
+		return "hello";
+	}	
+	
 	@PostMapping("/users")  //0->username exists already .1->new user.registration successful.
-	public int addnewusers(@RequestBody newusersdto n) {
+	public int addnewusers(@RequestBody Newusersdto n) {
 		return us.addnewusersservicemethod(n);
 	}		
 	@PostMapping("/login")
-	public tokendto loginusers(@RequestBody usernamepassworddto n,HttpServletResponse response) throws AuthenticationException{
-	//	System.out.println("before");
-		tokendto t=new tokendto();
+	public Tokendto loginusers(@RequestBody Usernamepassworddto n,HttpServletResponse response) throws AuthenticationException{
+		System.out.println("before");
+		Tokendto t=new Tokendto();
 		Authentication j=new UsernamePasswordAuthenticationToken(n.getEmailid(),n.getPassword());
+		System.out.println(j);
 		try {
 			Authentication b=am.authenticate(j);
 			if(b.isAuthenticated()) {
+				System.out.println("eeeee");
 				t.setToken(js.generateToken(n.getEmailid()));
 				int r=1;
 				if(b.getAuthorities().toString().equals("[ROLE_SELLER]")) {

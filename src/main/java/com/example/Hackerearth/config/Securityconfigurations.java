@@ -20,30 +20,33 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.security.web.context.RequestAttributeSecurityContextRepository;
 import org.springframework.web.cors.CorsConfigurationSource;
 
-import com.example.Hackerearth.filter.remembermefilter;
-import com.example.Hackerearth.services.logindetailsservice;
+import com.example.Hackerearth.filter.Remembermefilter;
+import com.example.Hackerearth.services.Logindetailsservice;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.cors.CorsConfiguration;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-public class securityconfigurations {
+public class Securityconfigurations {
 
 	@Autowired
-	private remembermefilter rmf;
+	private Remembermefilter rmf;
 	
 	@Bean
 	public UserDetailsService getuserdetails1() {
-		return new logindetailsservice();
+		return new Logindetailsservice();
 	}
  
 	@Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-	return http.csrf((e)->e.disable()).cors(Customizer.withDefaults())
+	return http.csrf((e)->e.disable())
+		//	.cors((n)->n.disable())
+			.cors(Customizer.withDefaults())
 			.sessionManagement(n->n.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 			.authorizeHttpRequests(
 				n->
@@ -56,7 +59,7 @@ public class securityconfigurations {
 		    	 m.securityContextRepository(new RequestAttributeSecurityContextRepository("securitycontextholder"))
 		    	 )
 		     .addFilterBefore(rmf, UsernamePasswordAuthenticationFilter.class)
-		     .addFilterBefore(corsFilter(), ChannelProcessingFilter.class)
+		 //    .addFilterBefore(corsFilter(), ChannelProcessingFilter.class)
 		     .build();
     }
 	
@@ -82,15 +85,14 @@ public class securityconfigurations {
 	    UrlBasedCorsConfigurationSource source =
 	            new UrlBasedCorsConfigurationSource();
 	    CorsConfiguration config = new CorsConfiguration();
-//	    config.addAllowedOrigin("http://localhost:4200");
-	    config.addAllowedOrigin("http://ec2-54-89-222-88.compute-1.amazonaws.com:4200");
+	    config.addAllowedOrigin("http://192.168.43.122:4200");
+	//    config.addAllowedOrigin("http://ec2-54-89-222-88.compute-1.amazonaws.com:4200");
 	    config.addAllowedHeader("*");
 	    config.addAllowedMethod("OPTIONS");
 	    config.addAllowedMethod("GET");
 	    config.addAllowedMethod("POST");
 	    config.addAllowedMethod("PUT");
 	    config.addAllowedMethod("DELETE");
-	    source.registerCorsConfiguration("/**", config);
 	    source.registerCorsConfiguration("/**", config);
 	    return new CorsFilter(source);
 	}

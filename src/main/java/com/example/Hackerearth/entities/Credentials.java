@@ -5,17 +5,19 @@ import jakarta.annotation.Nonnull;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 @Entity
 @Component
-public class credentials {
+@Table(name="credentials")
+public class Credentials {
 	@Id
 	private String emailid;
 	@Nonnull
 	private String password;
 	private String roles;
 	@OneToOne
-	private useraccounts account;
-	public credentials() {
+	private Useraccounts account;
+	public Credentials() {
 		super();
 	}
 	public String getEmailid() {
@@ -36,10 +38,10 @@ public class credentials {
 	public void setRoles(String roles) {
 		this.roles = roles;
 	}
-	public useraccounts getAccount() {
+	public Useraccounts getAccount() {
 		return account;
 	}
-	public void setAccount(useraccounts account) {
+	public void setAccount(Useraccounts account) {
 		this.account = account;
 	}
 	

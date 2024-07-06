@@ -1,11 +1,11 @@
 package com.example.Hackerearth.dto;
 
-public class logindetailsdto {
+public class Logindetailsdto {
 
 	private String emailid;
 	private String password;
 	private String roles;
-	public logindetailsdto() {
+	public Logindetailsdto() {
 		super();
 	}
 	public String getEmailid() {
@@ -26,7 +26,7 @@ public class logindetailsdto {
 	public void setRoles(String roles) {
 		this.roles = roles;
 	}
-	public logindetailsdto(String emailid, String password, String roles) {
+	public Logindetailsdto(String emailid, String password, String roles) {
 		super();
 		this.emailid = emailid;
 		this.password = password;

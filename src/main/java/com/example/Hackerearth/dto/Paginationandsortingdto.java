@@ -5,19 +5,19 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 @Component
-public class paginationandsortingdto {
-	private List<propertiesofsellersdtowithsellerinfo> data;
+public class Paginationandsortingdto {
+	private List<Propertiesofsellersdtowithsellerinfo> data;
 	private int pageno;
 	private int pagesize;
 	private int totalresults;
 	private String sortedvia;
-	public paginationandsortingdto() {
+	public Paginationandsortingdto() {
 		super();
 	}
-	public List<propertiesofsellersdtowithsellerinfo> getData() {
+	public List<Propertiesofsellersdtowithsellerinfo> getData() {
 		return data;
 	}
-	public void setData(List<propertiesofsellersdtowithsellerinfo> data) {
+	public void setData(List<Propertiesofsellersdtowithsellerinfo> data) {
 		this.data = data;
 	}
 	public int getPageno() {

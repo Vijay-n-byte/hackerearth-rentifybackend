@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 @Component
-public class newusersdto {
+public class Newusersdto {
 	@NotEmpty
 	private String firstname;
 	private String lastname;
@@ -19,7 +19,7 @@ public class newusersdto {
 	private String password;
 	@Max(value=2)
 	private int roles;
-	public newusersdto() {
+	public Newusersdto() {
 		super();
 	}
 	public String getFirstname() {

@@ -1,6 +1,6 @@
 package com.example.Hackerearth.dto;
 
-public class usernamepassworddto {
+public class Usernamepassworddto {
 
 	private String emailid;
 	private String password;
@@ -16,7 +16,7 @@ public class usernamepassworddto {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public usernamepassworddto() {
+	public Usernamepassworddto() {
 		super();
 	}
 	@Override

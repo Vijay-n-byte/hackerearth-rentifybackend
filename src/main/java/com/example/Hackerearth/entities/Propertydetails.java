@@ -1,31 +1,25 @@
-package com.example.Hackerearth.dto;
+package com.example.Hackerearth.entities;
 
 import org.springframework.stereotype.Component;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+
 @Component
-public class propertydto {
-	private String place;
-	private String area;
+@Embeddable
+public class Propertydetails {
+
 	private int noofsqmeters;
 	private int noofbredrooms;
 	private int noofbathrooms;
+	@Column(nullable=true)
 	private String nearbylandmark1;
+	@Column(nullable=true)
 	private String nearbylandmark2;
+	@Column(nullable=true)
 	private String nearbylandmark3;
-	public propertydto() {
+	public Propertydetails() {
 		super();
-	}
-	public String getPlace() {
-		return place;
-	}
-	public void setPlace(String place) {
-		this.place = place;
-	}
-	public String getArea() {
-		return area;
-	}
-	public void setArea(String area) {
-		this.area = area;
 	}
 	public int getNoofsqmeters() {
 		return noofsqmeters;
@@ -63,6 +57,5 @@ public class propertydto {
 	public void setNearbylandmark3(String nearbylandmark3) {
 		this.nearbylandmark3 = nearbylandmark3;
 	}
-	
 
 }

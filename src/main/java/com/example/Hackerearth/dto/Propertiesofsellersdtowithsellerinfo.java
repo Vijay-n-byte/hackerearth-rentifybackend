@@ -2,9 +2,9 @@ package com.example.Hackerearth.dto;
 
 import org.springframework.stereotype.Component;
 
-import com.example.Hackerearth.entities.properties;
+import com.example.Hackerearth.entities.Properties;
 
-public class propertiesofsellersdtowithsellerinfo {
+public class Propertiesofsellersdtowithsellerinfo {
 
 	private String propertyid;
 	private String place;
@@ -19,7 +19,7 @@ public class propertiesofsellersdtowithsellerinfo {
 	private String lastname;
 	private String phonenumber;
 	private int totaldatas;
-	public propertiesofsellersdtowithsellerinfo(properties p,int er) {
+	public Propertiesofsellersdtowithsellerinfo(Properties p,int er) {
 		super();
 		this.propertyid=p.getPropertyid();
 		this.place=p.getPlace();

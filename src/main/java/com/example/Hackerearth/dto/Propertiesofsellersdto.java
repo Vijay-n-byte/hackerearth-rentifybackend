@@ -2,16 +2,16 @@ package com.example.Hackerearth.dto;
 
 import org.springframework.stereotype.Component;
 
-import com.example.Hackerearth.entities.properties;
-import com.example.Hackerearth.entities.propertydetails;
-import com.example.Hackerearth.entities.useraccounts;
+import com.example.Hackerearth.entities.Properties;
+import com.example.Hackerearth.entities.Propertydetails;
+import com.example.Hackerearth.entities.Useraccounts;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-public class propertiesofsellersdto {
+public class Propertiesofsellersdto {
 	private String propertyid;
 	private String place;
 	private String area;
@@ -21,7 +21,7 @@ public class propertiesofsellersdto {
 	private String nearbylandmark1;
 	private String nearbylandmark2;
 	private String nearbylandmark3;
-	public propertiesofsellersdto(properties p) {
+	public Propertiesofsellersdto(Properties p) {
 		this.propertyid=p.getPropertyid();
 		this.place=p.getPlace();
 		this.area=p.getArea();

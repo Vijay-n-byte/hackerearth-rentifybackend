@@ -9,32 +9,32 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.example.Hackerearth.dto.logindetailsdto;
-import com.example.Hackerearth.dto.propertiesofsellersdto;
-import com.example.Hackerearth.dto.propertydto;
-import com.example.Hackerearth.entities.logindetails;
-import com.example.Hackerearth.entities.properties;
-import com.example.Hackerearth.entities.propertydetails;
-import com.example.Hackerearth.entities.useraccounts;
-import com.example.Hackerearth.repo.sellersrepo;
-import com.example.Hackerearth.repo.usersrepo;
+import com.example.Hackerearth.dto.Logindetailsdto;
+import com.example.Hackerearth.dto.Propertiesofsellersdto;
+import com.example.Hackerearth.dto.Propertydto;
+import com.example.Hackerearth.entities.Logindetails;
+import com.example.Hackerearth.entities.Properties;
+import com.example.Hackerearth.entities.Propertydetails;
+import com.example.Hackerearth.entities.Useraccounts;
+import com.example.Hackerearth.repo.Sellersrepo;
+import com.example.Hackerearth.repo.Usersrepo;
 import java.util.ArrayList;
 
 @Service
-public class sellersservice {
+public class Sellersservice {
 
 	@Autowired
-	private sellersrepo ldr;
+	private Sellersrepo ldr;
 	@Autowired
-	private usersrepo ur;
+	private Usersrepo ur;
 	
-	public void postproperty(propertydto p,String username){
-		properties k=new properties();
+	public void postproperty(Propertydto p,String username){
+		Properties k=new Properties();
 		k.setArea(p.getArea());
 		k.setPlace(p.getPlace());
 		UUID u1=UUID.randomUUID();
 		k.setPropertyid(u1.toString());
-		propertydetails pd=new propertydetails();
+		Propertydetails pd=new Propertydetails();
 		pd.setNoofsqmeters(p.getNoofsqmeters());
 		pd.setNoofbredrooms(p.getNoofbredrooms());
 		pd.setNoofbathrooms(p.getNoofbathrooms());
@@ -42,7 +42,7 @@ public class sellersservice {
 		pd.setNearbylandmark2(p.getNearbylandmark2());
 		pd.setNearbylandmark3(p.getNearbylandmark3());
 		k.setPd(pd);
-		useraccounts ac=ur.getuseraccountbyemailid(username);
+		Useraccounts ac=ur.getuseraccountbyemailid(username);
 		k.setUa(ac);
 		ldr.addproperty(k);
 	}
@@ -51,11 +51,11 @@ public class sellersservice {
 		ldr.deletepropertybypropertyid(propertyid);
 	}
 	
-	public void updateproperty(String propertyid,propertydto p){
-		properties k=ldr.getsingleproperty(propertyid);
+	public void updateproperty(String propertyid,Propertydto p){
+		Properties k=ldr.getsingleproperty(propertyid);
 		k.setArea(p.getArea());
 		k.setPlace(p.getPlace());
-		propertydetails pd=new propertydetails();
+		Propertydetails pd=new Propertydetails();
 		pd.setNoofsqmeters(p.getNoofsqmeters());
 		pd.setNoofbredrooms(p.getNoofbredrooms());
 		pd.setNoofbathrooms(p.getNoofbathrooms());
@@ -66,11 +66,11 @@ public class sellersservice {
 		ldr.updateproperty(k);
 	}
 	
-	public List<propertiesofsellersdto> getallproperty(String emailid){
-		List<properties> ua=ldr.getallproperties(emailid);
-		List<propertiesofsellersdto> pdf=new ArrayList<propertiesofsellersdto>();
-    	for(properties p:ua) {
-    		propertiesofsellersdto o=new propertiesofsellersdto(p);
+	public List<Propertiesofsellersdto> getallproperty(String emailid){
+		List<Properties> ua=ldr.getallproperties(emailid);
+		List<Propertiesofsellersdto> pdf=new ArrayList<Propertiesofsellersdto>();
+    	for(Properties p:ua) {
+    		Propertiesofsellersdto o=new Propertiesofsellersdto(p);
     		pdf.add(o);
     	}
 		return pdf;

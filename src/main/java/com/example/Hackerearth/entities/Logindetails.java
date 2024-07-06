@@ -8,16 +8,16 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.example.Hackerearth.dto.logindetailsdto;
+import com.example.Hackerearth.dto.Logindetailsdto;
 
-public class logindetails implements UserDetails{
+public class Logindetails implements UserDetails{
 
 	private String username;
 	private String password;
 	private List<GrantedAuthority> authorities;
 	
 
-	public logindetails(logindetailsdto l) {
+	public Logindetails(Logindetailsdto l) {
 		this.username = l.getEmailid();
 		this.password = l.getPassword();
 		List<GrantedAuthority> j=new ArrayList<GrantedAuthority>();

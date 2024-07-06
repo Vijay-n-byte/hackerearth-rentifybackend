@@ -1,10 +1,10 @@
 package com.example.Hackerearth.dto;
 
-public class tokendto {
+public class Tokendto {
 	private String token;
 	private int error;  //0->no error 1->username error 2->password error
 	private int role;
-	public tokendto() {
+	public Tokendto() {
 		super();
 	}
 	public String getToken() {

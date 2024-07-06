@@ -16,9 +16,9 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table
+@Table(name="useraccounts")
 @Component
-public class useraccounts {
+public class Useraccounts {
 
 	@Id
 	private String accountid;
@@ -27,11 +27,11 @@ public class useraccounts {
 	private String phonenumber;
 	@OneToMany(mappedBy="ua")
 	@Column(nullable=true)
-	private List<properties> houses;
+	private List<Properties> houses;
 	@OneToOne(mappedBy="account")
 	@JsonIgnore
-	private credentials c;
-	public useraccounts() {
+	private Credentials c;
+	public Useraccounts() {
 		super();
 	}
 	public String getAccountid() {
@@ -58,16 +58,16 @@ public class useraccounts {
 	public void setPhonenumber(String phonenumber) {
 		this.phonenumber = phonenumber;
 	}
-	public List<properties> getHouses() {
+	public List<Properties> getHouses() {
 		return houses;
 	}
-	public void setHouses(List<properties> houses) {
+	public void setHouses(List<Properties> houses) {
 		this.houses = houses;
 	}
-	public credentials getC() {
+	public Credentials getC() {
 		return c;
 	}
-	public void setC(credentials c) {
+	public void setC(Credentials c) {
 		this.c = c;
 	}
 	

@@ -9,28 +9,26 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.Hackerearth.dto.propertiesofsellersdto;
-import com.example.Hackerearth.dto.propertiesofsellersdtowithsellerinfo;
-import com.example.Hackerearth.services.buyservices;
-import com.example.Hackerearth.services.sellersservice;
+import com.example.Hackerearth.dto.Propertiesofsellersdto;
+import com.example.Hackerearth.dto.Propertiesofsellersdtowithsellerinfo;
+import com.example.Hackerearth.services.Buyservices;
+import com.example.Hackerearth.services.Sellersservice;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-//@CrossOrigin(origins="http://localhost:4200")
-@CrossOrigin(origins="http://ec2-54-89-222-88.compute-1.amazonaws.com:4200")
+@CrossOrigin(origins="http://192.168.43.122:4200")
+//@CrossOrigin(origins="http://ec2-54-89-222-88.compute-1.amazonaws.com:4200")
 @RestController
 @RequestMapping("/buyer")
-public class buyercontroller {
+public class Buyercontroller {
 
 	@Autowired
-	private buyservices ldr;
+	private Buyservices ldr;
 	
 	//dummy means none. //filterby->place .//filtervalue-->area
 	@GetMapping("/property/{filterby}/{filtervalue}/{pageno}/{noofelements}")
-	public List<propertiesofsellersdtowithsellerinfo> getallpropertiesfilterbyplace(@PathVariable String filterby,@PathVariable String filtervalue,@PathVariable int pageno,@PathVariable int noofelements) {
-	//	System.out.println("fil");
-	//	System.out.println(filterby+" "+filtervalue);
-		List<propertiesofsellersdtowithsellerinfo> km = null;
+	public List<Propertiesofsellersdtowithsellerinfo> getallpropertiesfilterbyplace(@PathVariable String filterby,@PathVariable String filtervalue,@PathVariable int pageno,@PathVariable int noofelements) {
+		List<Propertiesofsellersdtowithsellerinfo> km = null;
 		if(filterby.equals("dummy")) {
 			if(filtervalue.equals("dummy")) {
 				//returns without filter
@@ -52,8 +50,6 @@ public class buyercontroller {
 				km=ldr.getallpropertyfilterbyplacearea(pageno,noofelements , filterby, filtervalue);
 			}
 		}
-	//	System.out.println("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
-	//	System.out.print(km.get(0).getTotaldatas());
 		return km;
 	}
 }

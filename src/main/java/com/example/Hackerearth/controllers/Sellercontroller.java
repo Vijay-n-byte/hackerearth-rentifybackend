@@ -13,38 +13,38 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.Hackerearth.dto.propertiesofsellersdto;
-import com.example.Hackerearth.dto.propertydto;
-import com.example.Hackerearth.dto.usernamepassworddto;
-import com.example.Hackerearth.entities.properties;
-import com.example.Hackerearth.repo.sellersrepo;
-import com.example.Hackerearth.services.sellersservice;
+import com.example.Hackerearth.dto.Propertiesofsellersdto;
+import com.example.Hackerearth.dto.Propertydto;
+import com.example.Hackerearth.dto.Usernamepassworddto;
+import com.example.Hackerearth.entities.Properties;
+import com.example.Hackerearth.repo.Sellersrepo;
+import com.example.Hackerearth.services.Sellersservice;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.core.context.SecurityContext;
 
-//@CrossOrigin(origins="http://localhost:4200")
-@CrossOrigin(origins="http://ec2-54-89-222-88.compute-1.amazonaws.com:4200")
+@CrossOrigin(origins="http://192.168.43.122:4200")
+//@CrossOrigin(origins="http://ec2-54-89-222-88.compute-1.amazonaws.com:4200")
 @RestController
 @RequestMapping("/seller")
-public class sellercontroller {
+public class Sellercontroller {
 	
 	@Autowired
-	private sellersservice ldr;
+	private Sellersservice ldr;
 	
 	@PostMapping("/property")
-	public int postproperty(@RequestBody propertydto n,HttpServletRequest request) {
+	public int postproperty(@RequestBody Propertydto n,HttpServletRequest request) {
 		SecurityContext k=(SecurityContext) request.getAttribute("securitycontextholder");
 		ldr.postproperty(n,k.getAuthentication().getName());
 		return 1;
 	}
 	@GetMapping("/property")
-	public List<propertiesofsellersdto> getallproperty(HttpServletRequest request) {
+	public List<Propertiesofsellersdto> getallproperty(HttpServletRequest request) {
 		SecurityContext k=(SecurityContext) request.getAttribute("securitycontextholder");
 		return ldr.getallproperty(k.getAuthentication().getName());
 	}
 	@PutMapping("/property/{propertyid}")
-	public int editpropertydetails(@PathVariable String propertyid,@RequestBody propertydto n) {
+	public int editpropertydetails(@PathVariable String propertyid,@RequestBody Propertydto n) {
 		ldr.updateproperty(propertyid, n);
 		return 1;
 	}
